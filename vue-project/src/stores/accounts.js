@@ -8,6 +8,7 @@ import axios from 'axios'
 export const useAccountStore = defineStore('account', () => {
   const ACCOUNT_API_URL = 'http://127.0.0.1:8000/accounts'
   const token = ref('')
+  const router = useRouter()
 
   const signUp = function ({username, password1, password2, age}) {
   // const signUp = function (payload) {
@@ -44,7 +45,23 @@ export const useAccountStore = defineStore('account', () => {
       })
       .catch(err => console.log(err))
   }
+
+  const logOut = function() {
+    axios({
+      method: 'post',
+      url: `${ACCOUNT_API_URL}/logout/`
+    })
+    .then((res) => {
+      token.value = null
+      router.push({ name: 'ArticleView'})
+    })
+    .catch((err) => console.log(err))
+  }
+
+
+
   return { 
-    signUp, logIn
+    token,
+    signUp, logIn, logOut
   }
 }, { persist: true })
