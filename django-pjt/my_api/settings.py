@@ -35,8 +35,11 @@ ALLOWED_HOSTS = []
 # settings.py
 
 INSTALLED_APPS = [
-    'articles',
+    'books',
     'accounts',
+    'postcodes',
+    'recommendations',
+    'diaries',
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
