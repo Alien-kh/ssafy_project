@@ -2,6 +2,7 @@
 
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from rest_framework import serializers
+from .models import Follow
 
 class CustomRegisterSerializer(RegisterSerializer):
     age = serializers.IntegerField(required=True)
@@ -16,3 +17,10 @@ class CustomRegisterSerializer(RegisterSerializer):
         user.age = self.validated_data.get('age', '')
         user.save()
         return user
+    
+
+# 팔로우 serializer
+class FollowSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Follow
+        fields = '__all__'
