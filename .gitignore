@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/python,venv,django,vue,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,venv,django,vue,macos
+# Created by https://www.toptal.com/developers/gitignore/api/vue,python,macos,django,venv
+# Edit at https://www.toptal.com/developers/gitignore?templates=vue,python,macos,django,venv
 
 ### Django ###
 *.log
@@ -319,4 +319,4 @@ docs/_book
 # TODO: where does this rule come from?
 test/
 
-# End of https://www.toptal.com/developers/gitignore/api/python,venv,django,vue,macos
+# End of https://www.toptal.com/developers/gitignore/api/vue,python,macos,django,venv
