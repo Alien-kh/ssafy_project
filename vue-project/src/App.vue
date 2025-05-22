@@ -21,7 +21,7 @@
   const accountStore = useAccountStore();
 
   const logOut = function () {
-    accountStore.logout()
+    accountStore.logOut()
   }
 </script>
 

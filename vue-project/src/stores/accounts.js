@@ -11,24 +11,28 @@ export const useAccountStore = defineStore('account', () => {
   const router = useRouter()
 
   const signUp = function ({username, password1, password2, age}) {
-  // const signUp = function (payload) {
-    // 이곳에서 POST axios 요청 할 것임.
-    // console.log(payload)
     axios({
       method: 'POST',
       url: `${ACCOUNT_API_URL}/signup/`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       data: {
-        username, password1, password2,age
-        // ...payload
-        // username: payload.username,
-        // password1: payload.password1,
-        // password2: payload.password2
+        username,
+        password1,
+        password2,
+        age: Number(age)
       }
     })
-      .then(res => {
-        console.log('회원가입 성공!')
-      })
-      .catch(err => console.log(err))
+    .then(res => {
+        console.log('회원가입 성공:', res)
+        const password = password1
+        logIn({username, password})
+    })
+    .catch(err => {
+        console.log('Error details:', err.response?.data)
+        console.log('Status code:', err.response?.status)
+    })
   }
 
   const logIn = function({username, password}) {
@@ -42,23 +46,22 @@ export const useAccountStore = defineStore('account', () => {
       .then(res => {
         // console.log(res)
         token.value = res.data.key
+        router.push({ name: 'ArticleView' })
       })
       .catch(err => console.log(err))
   }
 
   const logOut = function() {
     axios({
-      method: 'post',
-      url: `${ACCOUNT_API_URL}/logout/`
+      method: 'POST',
+      url: `${ACCOUNT_API_URL}/logout/`,
     })
     .then((res) => {
       token.value = null
-      router.push({ name: 'ArticleView'})
+      router.push({ name: 'LogInView'})
     })
     .catch((err) => console.log(err))
   }
-
-
 
   return { 
     token,
